@@ -1,0 +1,77 @@
+﻿@model IEnumerable<DemoHisaab2.Models.Transaction>
+
+@{
+    ViewBag.Title = "DisplayTransaction";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Transactions Details </h2>
+<hr />
+@using (Html.BeginForm("Filter", "UserHome"))
+{
+    <div class="col-md-4">
+        @Html.Label("Start Date :-", htmlAttributes: new { @class = "control-label " })
+        @Html.TextBox("StartDate", null, htmlAttributes: new { @class = "form-control  ", placeholder = "mm/dd/yyyy" })
+    </div>
+    <div class="col-md-4">
+        @Html.Label("End Date :- ", htmlAttributes: new { @class = "control-label " })
+        @Html.TextBox("EndDate", null, htmlAttributes: new { @class = "form-control  ", placeholder = "mm/dd/yyyy" })
+    </div>
+    <div class="col-md-4">
+        <input type="submit" value="Filter" class="btn btn-default" />
+    </div>
+}
+
+<br />
+<br />
+<br />
+<br />
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DebitAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreditAccount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DebitAccount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditTransaction", new { id = item.TransactionId }) |
+                @Html.ActionLink("Delete", "DeleteTransaction1", new { id = item.TransactionId })
+            </td>
+        </tr>
+    }
+
+</table>

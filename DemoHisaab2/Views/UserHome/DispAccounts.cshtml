@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DemoHisaab2.Models.User_Accounts>
+
+@{
+    ViewBag.Title = "DispAccounts";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<div class="container">
+    <h2>Accounts Details</h2>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-4">
+
+                <hr />
+                <dl class="dl-horizontal">
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AccountName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.AccountName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TotalAmount)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.TotalAmount)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AccountType)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.AccountType)
+                    </dd>
+                    <dt>
+                        @Html.ActionLink("Show Transactions", "ShowAccountTransaction", new { id = item.UserId, AccountName = item.AccountName })
+                    </dt>
+                </dl>
+            </div>
+        }
+    </div>
+</div>
